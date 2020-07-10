@@ -19,7 +19,7 @@ defmodule DraftTheory.Helpers.Text do
       "Cho'Gath" ->
         "Chogath"
 
-      "Dr.Mundo" ->
+      "Dr. Mundo" ->
         "DrMundo"
 
       "Kai'Sa" ->
