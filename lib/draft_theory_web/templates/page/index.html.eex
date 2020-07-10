@@ -1,38 +1,105 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace-of-mind from prototype to production</p>
-</section>
+<%= Enum.chunk_every(@champions, 3)  |> Enum.map(fn row ->  %>
+<div class="row mt-3">
+    <%= Enum.map(row,fn %{name: name,icon_path: icon_path,attack: attack,protect: protect,pickoff: pickoff,siege: siege,split: split,specialization: specialization} ->  %>
+    <div class="col-sm mr-auto ">
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.5/CHANGELOG.md">v1.5 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-    </ul>
-  </article>
-</section>
+        <div class="border p-2">
+            <img src="<%= Routes.static_path(@conn, "/images/"<> icon_path  <> ".png") %>" alt="<%= name %>"
+                class="mx-auto">
+
+            <h6><%= name %></h6>
+            <b>Attack: </b>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: <%= attack %>%"
+                    aria-valuenow="<%= attack %>" aria-valuemin="0" aria-valuemax="100">
+                    <%= attack %></div>
+            </div> <br>
+            <b>Protect: </b>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: <%= protect %>%"
+                    aria-valuenow="<%= protect %>" aria-valuemin="0" aria-valuemax="100"><%= protect %></div>
+            </div> <br>
+            <b>Catch: </b>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= pickoff %>%"
+                    aria-valuenow="<%= pickoff %>" aria-valuemin="0" aria-valuemax="100"><%= pickoff %></div>
+            </div> <br>
+            <b>Siege: </b>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: <%= siege %>%"
+                    aria-valuenow="<%= siege %>" aria-valuemin="0" aria-valuemax="100"><%= siege %></div>
+            </div> <br>
+            <b>Split: </b>
+            <div class="progress">
+                <div class="progress-bar bg-secondaryr" role="progressbar" style="width: <%= split %>%"
+                    aria-valuenow="<%= split %>" aria-valuemin="0" aria-valuemax="100"><%= split %></div>
+            </div> <br>
+            <b>Specialization: </b>
+            <div class="progress">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: <%= specialization * 20 %>%"
+                    aria-valuenow="<%= specialization %>" aria-valuemin="0" aria-valuemax="100"><%= specialization %>
+                </div>
+            </div> <br>
+
+
+        </div>
+    </div>
+    <% end) %>
+</div>
+<% end) %>
+
+<div class="row">
+    <div class="col-sm">
+        One of three columns
+    </div>
+    <div class="col-sm">
+        One of three columns
+    </div>
+    <div class="col-sm">
+        One of three columns
+    </div>
+</div>
+
+
+<table class="table">
+    <tr class="thead-dark">
+        <th>Name</th>
+        <th>Power</th>
+    </tr>
+    <%= Enum.map(@champions,fn %{name: name,icon_path: icon_path,attack: attack,protect: protect,pickoff: pickoff,siege: siege,split: split,specialization: specialization} ->  %>
+    <tr>
+        <td>
+            <img src="<%= Routes.static_path(@conn, "/images/"<> icon_path  <> ".png") %>" alt="<%= name %>"
+                class="img-thumbnail" />
+        </td>
+        <td>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: <%= attack %>%"
+                    aria-valuenow="<%= attack %>" aria-valuemin="0" aria-valuemax="100">
+                    <%= attack %></div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: <%= protect %>%"
+                    aria-valuenow="<%= protect %>" aria-valuemin="0" aria-valuemax="100"><%= protect %></div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= pickoff %>%"
+                    aria-valuenow="<%= pickoff %>" aria-valuemin="0" aria-valuemax="100"><%= pickoff %></div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: <%= siege %>%"
+                    aria-valuenow="<%= siege %>" aria-valuemin="0" aria-valuemax="100"><%= siege %></div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-secondaryr" role="progressbar" style="width: <%= split %>%"
+                    aria-valuenow="<%= split %>" aria-valuemin="0" aria-valuemax="100"><%= split %></div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: <%= specialization * 20 %>%"
+                    aria-valuenow="<%= specialization %>" aria-valuemin="0" aria-valuemax="100"><%= specialization %>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <% end) %>
+</table>
